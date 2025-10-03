@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Point - Authentic Italian Pizza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { box-sizing: border-box; }
+        .hero-bg { background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); }
+        .pizza-card { transition: transform 0.3s ease; }
+        .pizza-card:hover { transform: translateY(-5px); }
+        .order-btn { transition: transform 0.2s ease; }
+        .order-btn:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-orange-600">🍕 Pizza Point</span>
+                </div>
+                <!-- Desktop Nav -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-gray-700 hover:text-orange-600 px-3 py-2 font-medium">Home</a>
+                        <a href="#menu" class="text-gray-700 hover:text-orange-600 px-3 py-2 font-medium">Menu</a>
+                        <a href="#about" class="text-gray-700 hover:text-orange-600 px-3 py-2 font-medium">About</a>
+                        <a href="#contact" class="text-gray-700 hover:text-orange-600 px-3 py-2 font-medium">Contact</a>
+                    </div>
+                </div>
+                <!-- Mobile Nav Button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-700 hover:text-orange-600 focus:outline-none">☰</button>
+                </div>
+                <!-- Actions -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="login-btn" class="text-orange-600 hover:text-orange-700 px-3 py-2 font-medium">Login</button>
+                    <button id="signup-btn" class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700">Sign Up</button>
+                    <span id="cart-count" class="bg-orange-600 text-white px-2 py-1 rounded-full text-sm">0</span>
+                    <button id="cart-btn" class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700">Cart</button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
+            <a href="#menu" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Menu</a>
+            <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">About</a>
+            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contact</a>
+            <div class="px-4 py-2 border-t flex items-center space-x-2">
+                <button id="mobile-login" class="text-orange-600">Login</button>
+                <button id="mobile-signup" class="bg-orange-600 text-white px-3 py-1 rounded">Sign Up</button>
+                <button id="mobile-cart" class="bg-orange-600 text-white px-3 py-1 rounded">Cart (<span id="mobile-cart-count">0</span>)</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg pt-20 pb-16 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Welcome to Pizza Point</h1>
+            <p class="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto">Authentic Italian pizzas made with fresh ingredients and traditional recipes. Experience the taste of Italy right here!</p>
+            <button onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})" class="bg-white text-orange-600 px-6 md:px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 order-btn">Order Now</button>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Delicious Menu</h2>
+                <p class="text-lg text-gray-600">Handcrafted pizzas made with love and the finest ingredients</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="pizza-menu">
+                <!-- Pizza items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">About Pizza Point</h2>
+                <p class="text-lg text-gray-600 mb-6">Since 2023, Pizza Point has been serving authentic Italian pizzas to our community. Our secret lies in using traditional recipes passed down through generations, combined with the freshest local ingredients.</p>
+                <p class="text-lg text-gray-600 mb-6">Every pizza is hand-tossed and baked in our wood-fired oven, ensuring that perfect crispy crust and melted cheese that keeps our customers coming back for more.</p>
+                <div class="flex justify-between max-w-md">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-orange-600">2+</div>
+                        <div class="text-gray-600">Years Experience</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-orange-600">20k+</div>
+                        <div class="text-gray-600">Happy Customers</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-orange-600">25+</div>
+                        <div class="text-gray-600">Pizza Varieties</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="bg-orange-100 rounded-full w-60 h-60 md:w-80 md:h-80 mx-auto flex items-center justify-center">
+                    <span class="text-7xl md:text-9xl">🍕</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Visit Us Today</h2>
+            <p class="text-lg text-gray-300 mb-12">Come experience the best pizza in town</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                <div>
+                    <div class="text-3xl mb-4">📍</div>
+                    <h3 class="text-xl font-semibold mb-2">Location</h3>
+                    <p class="text-gray-300">Near Mahila College<br>Begusarai, Bihar</p>
+                </div>
+                <div>
+                    <div class="text-3xl mb-4">📞</div>
+                    <h3 class="text-xl font-semibold mb-2">Phone</h3>
+                    <p class="text-gray-300">+91 8210541108<br>For Orders & Queries</p>
+                </div>
+                <div>
+                    <div class="text-3xl mb-4">🕒</div>
+                    <h3 class="text-xl font-semibold mb-2">Hours</h3>
+                    <p class="text-gray-300">Mon-Thu: 11am-10pm<br>Fri-Sun: 11am-11pm</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="text-2xl font-bold text-orange-600 mb-4">🍕 Pizza Point</div>
+            <p class="text-gray-400 mb-2">Follow us for latest updates and offers!</p>
+            <p class="text-gray-400">&copy; 2025 Pizza Point. All rights reserved. Made with ❤️ for pizza lovers.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Mobile Nav
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Pizza menu data
+        const pizzas = [
+            { id: 1, name: "Margherita", desc: "Fresh tomatoes, mozzarella, basil", price: 210, emoji: "🍅" },
+            { id: 2, name: "Cheese & Sweet Corn", desc: "Sweet corn with extra cheese", price: 250, emoji: "🌽" },
+            { id: 3, name: "Paneer Tikka", desc: "Spicy paneer tikka delight", price: 340, emoji: "🌶️" },
+            { id: 4, name: "Chicken Sausage", desc: "Loaded with juicy chicken sausages", price: 329, emoji: "🌭" },
+            { id: 5, name: "Mexican Chicken", desc: "Mexican spiced chicken with cheese", price: 379, emoji: "🇲🇽" },
+            { id: 6, name: "Deluxe Veggie", desc: "Premium vegetable toppings", price: 349, emoji: "👑" }
+        ];
+
+        // Render pizzas
+        const menu = document.getElementById('pizza-menu');
+        pizzas.forEach(pizza => {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-lg shadow-lg overflow-hidden pizza-card';
+            card.innerHTML = `
+                <div class="p-6 text-center">
+                    <div class="text-5xl mb-4">${pizza.emoji}</div>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">${pizza.name}</h4>
+                    <p class="text-gray-600 mb-4 text-sm">${pizza.desc}</p>
+                    <div class="text-lg font-semibold text-orange-600 mb-4">₹${pizza.price}</div>
+                    <button class="w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 order-btn">Add to Cart</button>
+                </div>`;
+            menu.appendChild(card);
+        });
+    </script>
+</body>
+</html>
